@@ -2,7 +2,7 @@ package com.example.tacocloud;
 
 import com.example.tacocloud.data.IngredientRepository;
 import com.example.tacocloud.tacos.Ingredient;
-import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -15,8 +15,10 @@ public class TacoCloud {
     }
 
     @Bean
-    public ApplicationRunner dataLoader(IngredientRepository repo) {
+    public CommandLineRunner dataLoader(IngredientRepository repo) {
         return args -> {
+            repo.deleteAll();
+
             repo.save(new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP));
             repo.save(new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP));
             repo.save(new Ingredient("GRBF", "Ground Beef", Ingredient.Type.PROTEIN));
