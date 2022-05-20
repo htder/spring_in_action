@@ -1,5 +1,6 @@
 package com.example.tacocloud.tacos;
 
+import com.datastax.oss.driver.api.core.uuid.Uuids;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 import org.springframework.data.cassandra.core.mapping.Column;
@@ -15,6 +16,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @Table("orders")
@@ -23,7 +25,7 @@ public class TacoOrder implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @PrimaryKey
-    private Long id;
+    private UUID id = Uuids.timeBased();
 
     private Date placedAt = new Date();
 
