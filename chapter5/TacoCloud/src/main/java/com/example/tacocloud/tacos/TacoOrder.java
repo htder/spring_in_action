@@ -1,5 +1,6 @@
 package com.example.tacocloud.tacos;
 
+import com.example.tacocloud.security.User;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
@@ -56,6 +57,9 @@ public class TacoOrder implements Serializable {
             message = "Invalid CVV"
     )
     private String ccCVV;
+
+    @ManyToOne
+    private User user;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Taco> tacos = new ArrayList<>();

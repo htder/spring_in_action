@@ -21,6 +21,7 @@
         <a th:href="@{/register}">here</a> to register.</p>
 
     <form method="post" th:action="@{/login}" id="loginForm">
+        <input name="_csrf" th:value="${_csrf.token}">
         <label for="username">Username: </label>
         <input type="text" name="username" id="username"><br/>
 
@@ -28,6 +29,10 @@
         <input type="password" name="password" id="password"><br/>
 
         <input type="submit" value="Login"/>
+    </form>
+
+    <form method="post" th:action="@{/logout}">
+        <input type="submit" value="Logout">
     </form>
 
 </body>
